@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+    <!-- context标签可以指定多个 -->
+    <context id="mysql" defaultModelType="flat" targetRuntime="MyBatis3Simple" >
+        <!-- 分隔符 -->
+        <property name="beginningDelimiter" value = "`"/>
+        <property name="endingDelimiter" value = "`"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 连接属性 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/blog?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai" userId="root" password="Qaz3326787!">
+            <!-- mybatis 不支持 scheme， 如果不配置这个，会生成数据库下所有的表 -->
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <!-- java 类型与jdbc类型的转换 -->
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- 指定生成的报存放路径 -->
+        <javaModelGenerator targetPackage="com.chris.vueblog.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- xml文件的属性 -->
+        <sqlMapGenerator targetPackage="com.chris.vueblog.mapper" targetProject="src/main/resources">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 配置java客户端生成器（mapper接口） 的属性-->
+        <javaClientGenerator targetPackage="com.chris.vueblog.mapper" type="XMLMAPPER" targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+        </javaClientGenerator>
+
+        <table tableName="%" schema="blog" >
+            <generatedKey column="id" sqlStatement="Mysql"></generatedKey>
+        </table>
+
+    </context>
+
+</generatorConfiguration>
