@@ -1,7 +1,9 @@
 package com.chris.vueblog.common;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 public class Result {
     private String code;
