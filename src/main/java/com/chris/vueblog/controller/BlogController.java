@@ -22,7 +22,6 @@ import java.util.Date;
  * @since 2021-01-28
  */
 @RestController
-@RequestMapping("/test")
 public class BlogController {
     @Autowired
     BlogService blogService;
@@ -43,6 +42,7 @@ public class BlogController {
     }
 
     // 新增一篇博客
+    // 用户， 角色， 权限， 用户角色（多对多）， 角色权限（都对多 权限id，角色id）
     @PostMapping("/blog/edit")
     public Result addBlog(@RequestBody Blog blog) {
         Blog tempBlog = null;

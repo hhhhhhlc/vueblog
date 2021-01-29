@@ -1,9 +1,11 @@
 package com.chris.vueblog.service.impl;
 
 import com.chris.vueblog.entity.User;
+import com.chris.vueblog.mapper.BlogMapper;
 import com.chris.vueblog.mapper.UserMapper;
 import com.chris.vueblog.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +18,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+    @Autowired
+    UserMapper userMapper;
 
+    public boolean findUserByName(User user) {
+
+        User temp = userMapper.findUserByName(user.getUsername());
+        if (temp.getPassword().equals(user.getPassword())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
