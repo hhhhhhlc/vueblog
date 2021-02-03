@@ -21,13 +21,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     UserMapper userMapper;
 
-    public boolean findUserByName(User user) {
+    public User findUserByName(User user) {
 
-        User temp = userMapper.findUserByName(user.getUsername());
-        if (temp.getPassword().equals(user.getPassword())) {
-            return true;
-        } else {
-            return false;
-        }
+        return userMapper.findUserByName(user.getUsername());
+
     }
 }

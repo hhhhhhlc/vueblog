@@ -13,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
-    public boolean findUserByName(User user);
+    public User findUserByName(User user);
 }
